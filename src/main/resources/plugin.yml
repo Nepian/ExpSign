@@ -1,0 +1,15 @@
+name: ExpSign
+main: com.Nepian.ExpSign.ExpSign
+version: 0.0.1
+author: Nepian
+depend:
+- Vault
+permissions:
+  NepianEXP.admin:
+    default: op
+
+  NepianEXP.sign.create.buy:
+    default: op
+
+  NepianEXP.sign.create.sell:
+    default: op
