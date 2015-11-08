@@ -9,13 +9,15 @@ import com.Nepian.Breeze.Utils.BlockUtil;
 import com.Nepian.ExpSign.Configuration.Properties;
 
 public class ExpSignShop {
+	public static final String EXPSIGNSHOP_NAME = "EXPSHOP";
+
 	public static final byte EXP_LINE = 0;
 	public static final byte QUANTITY_LINE = 1;
 	public static final byte PRICE_LINE = 2;
 	public static final byte NAME_LINE = 3;
 
 	public static final Pattern[] SHOP_SIGN_PATTERN = {
-			Pattern.compile("(\\[exp\\])", Pattern.CASE_INSENSITIVE),
+			Pattern.compile("^.*(" + EXPSIGNSHOP_NAME + ").*$", Pattern.CASE_INSENSITIVE),
 			Pattern.compile("^[1-9][0-9]*$"),
 			Pattern.compile("^[\\d(free):]+$"),
 			Pattern.compile("^?[\\w -.]*$")
@@ -25,6 +27,14 @@ public class ExpSignShop {
 
 	public static boolean isExpSign(String[] line) {
 		return SHOP_SIGN_PATTERN[EXP_LINE].matcher(line[EXP_LINE]).matches();
+	}
+
+	public static boolean isExpSign(Sign sign) {
+		return isExpSign(sign.getLine(EXP_LINE));
+	}
+
+	public static boolean isExpSign(String line) {
+		return SHOP_SIGN_PATTERN[EXP_LINE].matcher(line).matches();
 	}
 
 	public static boolean isAdminShop(String owner) {

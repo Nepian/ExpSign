@@ -15,10 +15,12 @@ import com.Nepian.ExpSign.Configuration.Logger;
 import com.Nepian.ExpSign.Configuration.Messages;
 import com.Nepian.ExpSign.Configuration.Properties;
 import com.Nepian.ExpSign.Listeners.ExpSignCreate;
+import com.Nepian.ExpSign.Listeners.Blocks.Breaks.SignBreak;
 import com.Nepian.ExpSign.Listeners.Player.PlayerJoin;
 import com.Nepian.ExpSign.Listeners.Player.PlayerQuit;
 import com.Nepian.ExpSign.Listeners.PostExpSignShopCreated.ShopCreatedLogger;
 import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.ErrorMessageSender;
+import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.ExpNameChanger;
 import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.NameChecker;
 import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.PermissionChecker;
 import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.PriceChecker;
@@ -111,6 +113,8 @@ public class ExpSign extends JavaPlugin {
 		registerPreExpSignShopCreationEvent();
 		registerPostExpSignShopCreatedEvent();
 
+		registerEvent(new SignBreak());
+
 		registerEvent(new PlayerJoin());
 		registerEvent(new PlayerQuit());
 	}
@@ -133,6 +137,7 @@ public class ExpSign extends JavaPlugin {
 		registerEvent(new QuantityChecker());
 		registerEvent(new PriceChecker());
 		registerEvent(new NameChecker());
+		registerEvent(new ExpNameChanger());
 		registerEvent(new ErrorMessageSender());
 	}
 
