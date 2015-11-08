@@ -8,7 +8,7 @@ import org.bukkit.block.Sign;
 import com.Nepian.Breeze.Utils.BlockUtil;
 import com.Nepian.ExpSign.Configuration.Properties;
 
-public class ExpShopSign {
+public class ExpSignShop {
 	public static final byte EXP_LINE = 0;
 	public static final byte QUANTITY_LINE = 1;
 	public static final byte PRICE_LINE = 2;

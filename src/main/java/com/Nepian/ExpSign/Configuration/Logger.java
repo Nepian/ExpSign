@@ -22,6 +22,9 @@ public class Logger {
 	public static String USERDATA_LOAD = "ユーザデータを読み込みました";
 	public static String USERDATA_SAVE_ALL = "ユーザデータを全て保存しました";
 
+	@PrecededBySpace
+	public static String EXPSIGNSHOP_CREATED_LOG = "{creater} が {type} を {amount} - {prices} で {location} に設置しました";
+
 	public static void log(String msg) {
 		msg = ChatColor.translateAlternateColorCodes('&', PREFIX + msg);
 		Bukkit.getServer().getConsoleSender().sendMessage(msg);

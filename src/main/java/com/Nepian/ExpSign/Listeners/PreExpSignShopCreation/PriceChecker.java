@@ -2,7 +2,7 @@ package com.Nepian.ExpSign.Listeners.PreExpSignShopCreation;
 
 import static com.Nepian.Breeze.Utils.PriceUtil.*;
 import static com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent.CreationOutcome.*;
-import static com.Nepian.ExpSign.Signs.ExpShopSign.*;
+import static com.Nepian.ExpSign.Signs.ExpSignShop.*;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,7 +14,7 @@ import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
 public class PriceChecker implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
-	public static void onPreExpSignCreation(PreExpSignShopCreationEvent event) {
+	public static void onPreExpSignShopCreation(PreExpSignShopCreationEvent event) {
 		String line = event.getSignLine(PRICE_LINE).toUpperCase().replaceAll(" ", "");
 
 		if (!isOnlyOneColon(line)) {

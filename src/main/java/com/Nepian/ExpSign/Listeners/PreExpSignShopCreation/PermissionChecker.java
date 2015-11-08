@@ -11,17 +11,17 @@ import org.bukkit.event.Listener;
 import com.Nepian.Breeze.Utils.PriceUtil;
 import com.Nepian.ExpSign.Permission;
 import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
-import com.Nepian.ExpSign.Signs.ExpShopSign;
+import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class PermissionChecker implements Listener {
 
 	@EventHandler(priority = HIGH)
-	public static void onPreExpSignCreation(PreExpSignShopCreationEvent event) {
+	public static void onPreExpSignShopCreation(PreExpSignShopCreationEvent event) {
 		Player player = event.getPlayer();
 
 		if (Permission.has(player, ADMIN)) return;
 
-		String priceLine = event.getSignLine(ExpShopSign.PRICE_LINE);
+		String priceLine = event.getSignLine(ExpSignShop.PRICE_LINE);
 
 		if (PriceUtil.hasBuyPrice(priceLine)) {
 			if (!Permission.has(player, SIGN_CREATION_BUY)) {

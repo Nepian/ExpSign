@@ -10,7 +10,7 @@ import com.Nepian.Breeze.Utils.StringUtil;
 import com.Nepian.ExpSign.ExpSign;
 import com.Nepian.ExpSign.Events.PostExpSignShopCreatedEvent;
 import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
-import com.Nepian.ExpSign.Signs.ExpShopSign;
+import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class ExpSignCreate implements Listener {
 
@@ -22,7 +22,7 @@ public class ExpSignCreate implements Listener {
 
 		String[] lines = StringUtil.stripColourCodes(event.getLines());
 
-		if (!ExpShopSign.isExpSign(lines)) {
+		if (!ExpSignShop.isExpSign(lines)) {
 			return;
 		}
 
