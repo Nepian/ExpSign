@@ -53,6 +53,8 @@ public class ExpSign extends JavaPlugin {
 	}
 
 	public void onDisable() {
+		UserdataManager.save();
+
 		Logger.log(PLUGIN_DISABLE);
 	}
 
