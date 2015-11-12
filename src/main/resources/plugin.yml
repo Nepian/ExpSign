@@ -7,9 +7,11 @@ depend:
 permissions:
   NepianEXP.admin:
     default: op
-
   NepianEXP.sign.create.buy:
     default: op
-
   NepianEXP.sign.create.sell:
     default: op
+  ExpSign.shop.buy:
+    default: true
+  ExpSign.shop.sell:
+    default: true

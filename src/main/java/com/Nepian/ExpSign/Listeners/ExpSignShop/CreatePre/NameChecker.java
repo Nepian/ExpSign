@@ -1,4 +1,4 @@
-package com.Nepian.ExpSign.Listeners.PreExpSignShopCreation;
+package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre;
 
 import static com.Nepian.ExpSign.Permission.*;
 import static com.Nepian.ExpSign.Signs.ExpSignShop.*;
@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.Nepian.ExpSign.Permission;
-import com.Nepian.ExpSign.Configuration.Properties;
+import com.Nepian.ExpSign.Configuration.Configs;
 import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
 
@@ -21,7 +21,7 @@ public class NameChecker implements Listener {
 
 		if (name.isEmpty() || !name.equals(player.getName())) {
 			if (Permission.has(player, ADMIN) && ExpSignShop.isAdminShop(name)) {
-				name = Properties.ADMIN_SHOP_NAME;
+				name = Configs.ADMIN_SHOP_NAME;
 			} else {
 				name = player.getName();
 			}

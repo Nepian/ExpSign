@@ -17,6 +17,9 @@ public class Logger {
 	public static String PLUGIN_DISABLE = plugin.getName() + " Disabled!";
 
 	@PrecededBySpace
+	public static String NO_ECONOMY = "経済プラグインが見つかりません。";
+
+	@PrecededBySpace
 	public static String USERDATA_FOLDER_MAKING = "ユーザデータフォルダを生成しました";
 	public static String USERDATA_UUID_LOAD = "UUIDを読み込みました";
 	public static String USERDATA_LOAD = "ユーザデータを読み込みました";
@@ -32,6 +35,8 @@ public class Logger {
 	}
 
 	public static void debug(String msg) {
-		Logger.log("&7[&eDEBUG&7]&r " + msg);
+		if (Configs.DEBUG) {
+			Logger.log("&7[&eDEBUG&7]&r " + msg);
+		}
 	}
 }

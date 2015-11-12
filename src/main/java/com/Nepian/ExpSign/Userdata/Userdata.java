@@ -41,7 +41,7 @@ public class Userdata {
 		return data.get(key);
 	}
 
-	public int getInt(String key) {
+	public int getInteger(String key) {
 		return (int) get(key);
 	}
 

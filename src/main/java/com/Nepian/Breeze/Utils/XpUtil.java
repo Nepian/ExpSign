@@ -4,9 +4,14 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class XpUtil {
-	private static int[] totalExpToReachLevel;	/* レベル毎の経験値総量を記録しておく */
+	/* レベル毎の経験値総量を記録しておく */
+	private static int[] totalExpToReachLevel;
 
+	/* 経験値テーブルの初期化処理を実行
+	 * 初期状態で 40XP まで読み込み(随時更新される) */
 	static { initExpTables(40); }
+
+	/* Private Methods ------------------------------------------------------*/
 
 	/**
 	 * 経験値テーブルを初期化する
@@ -18,6 +23,8 @@ public class XpUtil {
 			totalExpToReachLevel[i] = convertXpToExp(i);
 		}
 	}
+
+	/* Methods --------------------------------------------------------------*/
 
 	/**
 	 * XPをEXPに変換する
@@ -84,7 +91,7 @@ public class XpUtil {
 	}
 
 	/**
-	 * 文字列のXPとして正当かどうか判定する
+	 * 文字列がXPとして正当かどうか判定する
 	 * @param string XPか判定する文字列
 	 * @return 文字列がXPかどうか
 	 */
@@ -102,18 +109,18 @@ public class XpUtil {
 	}
 
 	/**
-	 * 最後がLの文字列からXPに変換する
+	 * 最後がLの文字列をXPに変換する
 	 * @param string 最後がLの文字列
-	 * @return 文字列から変換したXP、変換失敗は-1を返す
+	 * @return 変換失敗時は -1 を返す
 	 */
 	public static int getXpFromString(String string) {
 		return Integer.parseInt(string.substring(0, string.length() - 1));
 	}
 
 	/**
-	 * 文字列からEXPに変換する
+	 * 文字列をEXPに変換する
 	 * @param string EXPに変換する文字列
-	 * @return 文字列から変換したEXP、変換失敗は-1を返す
+	 * @return 変換失敗時は -1 を返す
 	 */
 	public static int getExpFromString(String string) {
 		return Integer.parseInt(string);

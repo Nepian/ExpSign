@@ -3,10 +3,11 @@ package com.Nepian.Breeze.Utils;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-
-import com.Nepian.Breeze.Utils.XpUtil;
+import org.bukkit.util.BlockIterator;
 
 public class PlayerUtil {
 	public static final int MAX_EXP = 2100000000;
@@ -135,6 +136,16 @@ public class PlayerUtil {
 	}
 
 	/**
+	 * プレイヤーの経験値を減らす
+	 * @param player 対象のプレイヤー
+	 * @param quantity 減らす量
+	 * @return EXPを変更したプレイヤー
+	 */
+	public static Player subtractExp(Player player, int quantity) {
+		return setExp(player, getExp(player) - quantity);
+	}
+
+	/**
 	 * プレイヤーのEXPを0にする
 	 * @param player 対象のプレイヤー
 	 * @return EXPを0にしたプレイヤー
@@ -167,6 +178,26 @@ public class PlayerUtil {
 		for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
 			if (player.getName().equals(name)) {
 				return player.getUniqueId();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * プレイヤーの視線の先にあるブロックを取得する
+	 * @param player 対象のプレイヤー
+	 * @param maxDistance 取得する距離
+	 * @return ブロックがmaxDistance中に存在しない場合はnullを返す
+	 */
+	public static Block getTargetBlock(Player player, int maxDistance) {
+		BlockIterator it = new BlockIterator(player, maxDistance);
+
+		while (it.hasNext()) {
+			Block block = it.next();
+
+			if (block.getType() != Material.AIR) {
+				return block;
 			}
 		}
 

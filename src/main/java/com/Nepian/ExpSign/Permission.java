@@ -4,6 +4,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public enum Permission {
+	SHOP_BUY("ExpSign.shop.buy"),
+	SHOP_SELL("ExpSign.shop.sell"),
 	SIGN_CREATION_BUY("NepianEXP.sign.create.buy"),
 	SIGN_CREATION_SELL("NepianEXP.sign.create.sell"),
 

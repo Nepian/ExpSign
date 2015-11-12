@@ -1,4 +1,4 @@
-package com.Nepian.ExpSign.Listeners;
+package com.Nepian.ExpSign.Listeners.ExpSignShop;
 
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,7 @@ import com.Nepian.ExpSign.Events.PostExpSignShopCreatedEvent;
 import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
 
-public class ExpSignCreate implements Listener {
+public class ExpSignShopCreate implements Listener {
 
 	@EventHandler
 	public static void onSignChange(SignChangeEvent event) {

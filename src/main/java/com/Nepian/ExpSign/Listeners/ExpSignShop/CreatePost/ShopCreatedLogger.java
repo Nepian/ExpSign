@@ -1,4 +1,4 @@
-package com.Nepian.ExpSign.Listeners.PostExpSignShopCreated;
+package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePost;
 
 import static com.Nepian.ExpSign.Signs.ExpSignShop.*;
 

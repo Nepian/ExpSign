@@ -11,20 +11,30 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Nepian.Breeze.Configuration.Configuration;
+import com.Nepian.ExpSign.Configuration.Configs;
 import com.Nepian.ExpSign.Configuration.Logger;
 import com.Nepian.ExpSign.Configuration.Messages;
-import com.Nepian.ExpSign.Configuration.Properties;
-import com.Nepian.ExpSign.Listeners.ExpSignCreate;
-import com.Nepian.ExpSign.Listeners.Blocks.Breaks.SignBreak;
+import com.Nepian.ExpSign.Economy.Eco;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopCreate;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopProtect;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopTrade;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePost.ShopCreatedLogger;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.ErrorMessageSender;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.ExpNameChanger;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.NameChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.PermissionChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.PriceChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre.QuantityChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeErrorMessageSender;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeExecute;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeMessageSender;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeMoneyChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeNameChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradePermissionChecker;
+import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeQuantityChecker;
 import com.Nepian.ExpSign.Listeners.Player.PlayerJoin;
 import com.Nepian.ExpSign.Listeners.Player.PlayerQuit;
-import com.Nepian.ExpSign.Listeners.PostExpSignShopCreated.ShopCreatedLogger;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.ErrorMessageSender;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.ExpNameChanger;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.NameChecker;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.PermissionChecker;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.PriceChecker;
-import com.Nepian.ExpSign.Listeners.PreExpSignShopCreation.QuantityChecker;
+import com.Nepian.ExpSign.Listeners.UserdataLoad.ExpBankLoading;
 import com.Nepian.ExpSign.Listeners.UserdataLoad.ExpLoading;
 import com.Nepian.ExpSign.Listeners.UserdataLoad.NameLoading;
 import com.Nepian.ExpSign.Listeners.UserdataSave.ExpSaving;
@@ -44,7 +54,11 @@ public class ExpSign extends JavaPlugin {
 	/* Methods --------------------------------------------------------------*/
 
 	public void onEnable() {
-		Configuration.pairFileAndClass(loadFile("config.yml"), Properties.class);
+		if (!Eco.hasEconomy()) {
+			Logger.log(NO_ECONOMY);
+		}
+
+		Configuration.pairFileAndClass(loadFile("config.yml"), Configs.class);
 		Configuration.pairFileAndClass(loadFile("log-message.yml"), Logger.class);
 		Configuration.pairFileAndClass(loadFile("local.yml"), Messages.class);
 
@@ -55,6 +69,7 @@ public class ExpSign extends JavaPlugin {
 	}
 
 	public void onDisable() {
+		getServer().getScheduler().cancelTasks(this);
 		UserdataManager.save();
 
 		Logger.log(PLUGIN_DISABLE);
@@ -109,11 +124,14 @@ public class ExpSign extends JavaPlugin {
 		registerUserdatataLoadEvent();
 		registerUserdataSaveEvent();
 
-		registerEvent(new ExpSignCreate());
-		registerPreExpSignShopCreationEvent();
-		registerPostExpSignShopCreatedEvent();
+		registerEvent(new ExpSignShopCreate());
+		registerExpSignShopCreatePreEvent();
+		registerExpSignShopCreatePostEvent();
 
-		registerEvent(new SignBreak());
+		registerEvent(new ExpSignShopTrade());
+		registerExpSignShopTradeEvent();
+
+		registerEvent(new ExpSignShopProtect());
 
 		registerEvent(new PlayerJoin());
 		registerEvent(new PlayerQuit());
@@ -126,13 +144,14 @@ public class ExpSign extends JavaPlugin {
 	private void registerUserdatataLoadEvent() {
 		registerEvent(new NameLoading());
 		registerEvent(new ExpLoading());
+		registerEvent(new ExpBankLoading());
 	}
 
 	private void registerUserdataSaveEvent() {
 		registerEvent(new ExpSaving());
 	}
 
-	private void registerPreExpSignShopCreationEvent() {
+	private void registerExpSignShopCreatePreEvent() {
 		registerEvent(new PermissionChecker());
 		registerEvent(new QuantityChecker());
 		registerEvent(new PriceChecker());
@@ -141,8 +160,18 @@ public class ExpSign extends JavaPlugin {
 		registerEvent(new ErrorMessageSender());
 	}
 
-	private void registerPostExpSignShopCreatedEvent() {
+	private void registerExpSignShopCreatePostEvent() {
 		registerEvent(new ShopCreatedLogger());
+	}
+
+	private void registerExpSignShopTradeEvent() {
+		registerEvent(new TradeNameChecker());
+		registerEvent(new TradePermissionChecker());
+		registerEvent(new TradeMoneyChecker());
+		registerEvent(new TradeQuantityChecker());
+		registerEvent(new TradeErrorMessageSender());
+		registerEvent(new TradeExecute());
+		registerEvent(new TradeMessageSender());
 	}
 
 	/* Getter ---------------------------------------------------------------*/

@@ -6,7 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 
 import com.Nepian.Breeze.Utils.BlockUtil;
-import com.Nepian.ExpSign.Configuration.Properties;
+import com.Nepian.ExpSign.Configuration.Configs;
 
 public class ExpSignShop {
 	public static final String EXPSIGNSHOP_NAME = "EXPSHOP";
@@ -19,7 +19,7 @@ public class ExpSignShop {
 	public static final Pattern[] SHOP_SIGN_PATTERN = {
 			Pattern.compile("^.*(" + EXPSIGNSHOP_NAME + ").*$", Pattern.CASE_INSENSITIVE),
 			Pattern.compile("^[1-9][0-9]*$"),
-			Pattern.compile("^[\\d(free):]+$"),
+			Pattern.compile("^[\\dbs(free) :]+$", Pattern.CASE_INSENSITIVE),
 			Pattern.compile("^?[\\w -.]*$")
 	};
 
@@ -38,7 +38,7 @@ public class ExpSignShop {
 	}
 
 	public static boolean isAdminShop(String owner) {
-		return owner.replace(" ", "").equalsIgnoreCase(Properties.ADMIN_SHOP_NAME.replace(" ", ""));
+		return owner.replace(" ", "").equalsIgnoreCase(Configs.ADMIN_SHOP_NAME.replace(" ", ""));
 	}
 
 	public static boolean isValid(Block sign) {

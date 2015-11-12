@@ -1,4 +1,4 @@
-package com.Nepian.ExpSign.Listeners.PreExpSignShopCreation;
+package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre;
 
 import static com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent.CreationOutcome.*;
 import static com.Nepian.ExpSign.Permission.*;

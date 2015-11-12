@@ -1,4 +1,4 @@
-package com.Nepian.ExpSign.Listeners.PostExpSignShopCreated;
+package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePost;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
