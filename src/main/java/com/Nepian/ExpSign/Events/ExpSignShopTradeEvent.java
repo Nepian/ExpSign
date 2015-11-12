@@ -114,6 +114,7 @@ public class ExpSignShopTradeEvent extends Event {
 		NO_PLAYER_MONEY,
 		NO_PERMISSION,
 		MAX_EXP,
+		OWNER_IS_PLAYER,
 
 		OTHER,
 

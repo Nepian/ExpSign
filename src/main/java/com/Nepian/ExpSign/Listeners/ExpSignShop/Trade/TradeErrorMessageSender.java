@@ -37,6 +37,8 @@ public class TradeErrorMessageSender implements Listener {
 		case MAX_EXP:
 			message = Messages.MAX_PLAYER_EXP;
 			break;
+		case OWNER_IS_PLAYER:
+			message = Messages.EXPSIGNSHOP_OWNER_IS_PLAYER;
 		default:
 		}
 

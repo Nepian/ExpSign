@@ -23,6 +23,7 @@ public class Messages {
 	public static String SUCCESS_EXPSIGNSHOP_SELL = "経験値を売却しました！";
 	public static String NO_EXPSIGNSHOP_OWNER_MONEY = "このショップの残金がありません！";
 	public static String NO_EXPSIGNSHOP_OWNER_EXP = "このショップの経験値は売り切れです！";
+	public static String EXPSIGNSHOP_OWNER_IS_PLAYER = "自分のショップでの売買はできません！";
 
 	@PrecededBySpace
 	@ConfigurationComment("保護関連のメッセージ")
