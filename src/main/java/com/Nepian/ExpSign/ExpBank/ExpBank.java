@@ -19,7 +19,7 @@ public class ExpBank {
 	public static void withdraw(Userdata userdata, int quantity) {
 		int bankMoney = userdata.getInteger(Properties.EXPBANK_PATH);
 
-		userdata.set(Properties.EXPBANK_PATH, Math.max(0, bankMoney + quantity));
+		userdata.set(Properties.EXPBANK_PATH, Math.max(0, bankMoney - quantity));
 	}
 
 	public static void withdraw(UUID uuid, int quantity) {
