@@ -11,6 +11,7 @@ import com.Nepian.ExpSign.Economy.Eco;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.Outcome;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.ShopType;
+import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.TradeType;
 
 public class TradeMoneyChecker implements Listener {
 
@@ -18,6 +19,10 @@ public class TradeMoneyChecker implements Listener {
 	public static void onTradeBuy(ExpSignShopTradeEvent event) {
 
 		if (event.isCancelled()) {
+			return;
+		}
+
+		if (event.getTradeType() != TradeType.BUY) {
 			return;
 		}
 
@@ -39,6 +44,10 @@ public class TradeMoneyChecker implements Listener {
 	public static void onTradeSell(ExpSignShopTradeEvent event) {
 
 		if (event.isCancelled()) {
+			return;
+		}
+
+		if (event.getTradeType() != TradeType.SELL) {
 			return;
 		}
 
