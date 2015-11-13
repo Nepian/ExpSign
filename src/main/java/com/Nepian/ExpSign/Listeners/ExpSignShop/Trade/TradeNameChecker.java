@@ -20,7 +20,7 @@ public class TradeNameChecker implements Listener {
 		final String player = event.getPlayer().getName();
 
 		if (player.equals(owner)) {
-			event.setOutcome(Outcome.OTHER);
+			event.setOutcome(Outcome.OWNER_IS_PLAYER);
 		}
 	}
 }

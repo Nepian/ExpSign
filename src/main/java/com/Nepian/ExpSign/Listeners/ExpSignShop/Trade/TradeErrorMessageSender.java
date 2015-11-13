@@ -39,6 +39,13 @@ public class TradeErrorMessageSender implements Listener {
 			break;
 		case OWNER_IS_PLAYER:
 			message = Messages.EXPSIGNSHOP_OWNER_IS_PLAYER;
+			break;
+		case CANT_BUY:
+			message = Messages.EXPSIGNSHOP_CANNOT_BUY;
+			break;
+		case CANT_SELL:
+			message = Messages.EXPSIGNSHOP_CANNOT_SELL;
+			break;
 		default:
 		}
 

@@ -7,6 +7,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.Nepian.Breeze.Utils.PlayerUtil;
+import com.Nepian.Breeze.Utils.PriceUtil;
 import com.Nepian.ExpSign.Economy.Eco;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.Outcome;
@@ -38,6 +39,12 @@ public class TradeMoneyChecker implements Listener {
 	/* Private Methods ------------------------------------------------------*/
 
 	private static void buyMoneyCheck() {
+
+		if (price == PriceUtil.NO_PRICE) {
+			event.setOutcome(Outcome.CANT_BUY);
+			return;
+		}
+
 		final double playerMoney = Eco.getEconomy().getBalance(event.getPlayer());
 
 		if (playerMoney - price < 0) {
@@ -46,6 +53,12 @@ public class TradeMoneyChecker implements Listener {
 	}
 
 	private static void sellMoneyCheck() {
+
+		if (price == PriceUtil.NO_PRICE) {
+			event.setOutcome(Outcome.CANT_SELL);
+			return;
+		}
+
 		final OfflinePlayer owner = Bukkit.getOfflinePlayer(PlayerUtil.getUUID(event.getOwnerName()));
 		final double ownerMoney = Eco.getEconomy().getBalance(owner);
 
