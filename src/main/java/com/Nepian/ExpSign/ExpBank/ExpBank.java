@@ -12,9 +12,9 @@ import com.Nepian.ExpSign.Userdata.UserdataManager;
 public class ExpBank {
 
 	/**
-	 * ExpBankからお金を引き出す
+	 * ExpBankから経験値を引き出す
 	 * @param userdata ExpBankのデータをもつユーザデータ
-	 * @param quantity 引き出す金額
+	 * @param quantity 引き出す経験値量
 	 */
 	public static void withdraw(Userdata userdata, int quantity) {
 		int bankMoney = userdata.getInteger(Properties.EXPBANK_PATH);
@@ -23,21 +23,21 @@ public class ExpBank {
 	}
 
 	public static void withdraw(UUID uuid, int quantity) {
-		withdraw(UserdataManager.getUserdata(uuid), quantity);
+		withdraw(getUserdata(uuid), quantity);
 	}
 
 	public static void withdraw(OfflinePlayer player, int quantity) {
-		withdraw(player.getUniqueId(), quantity);
+		withdraw(getUniqueId(player), quantity);
 	}
 
 	public static void withdraw(String name, int quantity) {
-		withdraw(PlayerUtil.getUUID(name), quantity);
+		withdraw(getUniqueId(name), quantity);
 	}
 
 	/**
-	 * ExpBankにお金を預ける
+	 * ExpBankに経験値を預ける
 	 * @param userdata ExpBankのデータをもつユーザデータ
-	 * @param quantity 預ける金額
+	 * @param quantity 預ける経験値量
 	 */
 	public static void deposit(Userdata userdata, int quantity) {
 		int bankMoney = userdata.getInteger(Properties.EXPBANK_PATH);
@@ -46,14 +46,48 @@ public class ExpBank {
 	}
 
 	public static void deposit(UUID uuid, int quantity) {
-		deposit(UserdataManager.getUserdata(uuid), quantity);
+		deposit(getUserdata(uuid), quantity);
 	}
 
 	public static void deposit(OfflinePlayer player, int quantity) {
-		deposit(player.getUniqueId(), quantity);
+		deposit(getUniqueId(player), quantity);
 	}
 
 	public static void deposit(String name, int quantity) {
-		deposit(PlayerUtil.getUUID(name), quantity);
+		deposit(getUniqueId(name), quantity);
+	}
+
+	/**
+	 * ExpBankの経験値を確認する
+	 * @param userdata 確認するユーザのユーザデータ
+	 */
+	public static int check(Userdata userdata) {
+		return userdata.getInteger(Properties.EXPBANK_PATH);
+	}
+
+	public static int check(UUID uuid) {
+		return check(getUserdata(uuid));
+	}
+
+	public static int check(OfflinePlayer player) {
+		return check(getUniqueId(player));
+	}
+
+	public static int check(String name) {
+		return check(getUniqueId(name));
+	}
+
+	/*  Private Methods -----------------------------------------------------*/
+
+	private static Userdata getUserdata(UUID uuid) {
+		return UserdataManager.getUserdata(uuid);
+	}
+
+	private static UUID getUniqueId(OfflinePlayer player) {
+		return player.getUniqueId();
+	}
+
+	private static UUID getUniqueId(String name) {
+		return PlayerUtil.getUUID(name);
 	}
 }
