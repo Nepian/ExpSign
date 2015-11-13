@@ -203,4 +203,22 @@ public class PlayerUtil {
 
 		return null;
 	}
+
+	/**
+	 * UUIDが示すプレイヤーを取得する
+	 * @param uuid 対象のUUID
+	 * @return 存在しなかった場合は null を返す
+	 */
+	public static OfflinePlayer getOfflinePlayer(UUID uuid) {
+		return Bukkit.getOfflinePlayer(uuid);
+	}
+
+	/**
+	 * Stringが示すプレイヤーを取得する
+	 * @param name
+	 * @return 存在しなかった場合は null を返す
+	 */
+	public static OfflinePlayer getOfflinePlayer(String name) {
+		return getOfflinePlayer(getUUID(name));
+	}
 }
