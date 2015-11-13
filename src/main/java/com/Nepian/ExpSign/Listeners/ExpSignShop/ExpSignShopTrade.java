@@ -19,7 +19,7 @@ public class ExpSignShopTrade implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public static void onPlayerInt(PlayerInteractEvent event) {
 
-		if (!event.getPlayer().isSneaking()) {
+		if (event.getPlayer().isSneaking()) {
 			return;
 		}
 
