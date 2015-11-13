@@ -1,6 +1,5 @@
 package com.Nepian.ExpSign.Listeners.ExpSignShop.Trade;
 
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,34 +10,18 @@ import com.Nepian.Breeze.Utils.PriceUtil;
 import com.Nepian.ExpSign.Economy.Eco;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.Outcome;
+import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.ShopType;
 
 public class TradeMoneyChecker implements Listener {
-	private static ExpSignShopTradeEvent event;
-	private static double price;
 
 	@EventHandler(priority = EventPriority.NORMAL)
-	public static void onTrade(ExpSignShopTradeEvent eve) {
-		event = eve;
+	public static void onTradeBuy(ExpSignShopTradeEvent event) {
 
 		if (event.isCancelled()) {
 			return;
 		}
 
-		price = event.getPrice();
-
-		switch (event.getTradeType()) {
-		case BUY:
-			buyMoneyCheck();
-			break;
-		case SELL:
-			sellMoneyCheck();
-			break;
-		}
-	}
-
-	/* Private Methods ------------------------------------------------------*/
-
-	private static void buyMoneyCheck() {
+		final double price = event.getPrice();
 
 		if (price == PriceUtil.NO_PRICE) {
 			event.setOutcome(Outcome.CANT_BUY);
@@ -52,18 +35,27 @@ public class TradeMoneyChecker implements Listener {
 		}
 	}
 
-	private static void sellMoneyCheck() {
+	@EventHandler(priority = EventPriority.NORMAL)
+	public static void onTradeSell(ExpSignShopTradeEvent event) {
+
+		if (event.isCancelled()) {
+			return;
+		}
+
+		final double price = event.getPrice();
 
 		if (price == PriceUtil.NO_PRICE) {
 			event.setOutcome(Outcome.CANT_SELL);
 			return;
 		}
 
-		final OfflinePlayer owner = Bukkit.getOfflinePlayer(PlayerUtil.getUUID(event.getOwnerName()));
-		final double ownerMoney = Eco.getEconomy().getBalance(owner);
+		if (event.getShopType() != ShopType.ADMIN) {
+			final OfflinePlayer owner = PlayerUtil.getOfflinePlayer(event.getOwnerName());
+			final double ownerMoney = Eco.getEconomy().getBalance(owner);
 
-		if (ownerMoney - price < 0) {
-			event.setOutcome(Outcome.NO_OWNER_MONEY);
+			if (ownerMoney - price < 0) {
+				event.setOutcome(Outcome.NO_OWNER_MONEY);
+			}
 		}
 	}
 }
