@@ -29,7 +29,7 @@ public class ExpSign extends JavaPlugin {
 		PlayerDataManager.load();
 		EventRegister.load();
 
-		Logger.log(PLUGIN__ENABLE.get());
+		Logger.log(PLUGIN__ENABLE);
 	}
 
 	public void onDisable() {
@@ -39,7 +39,7 @@ public class ExpSign extends JavaPlugin {
 
 		getServer().getScheduler().cancelTasks(this);
 
-		Logger.log(PLUGIN__DISABLE.get());
+		Logger.log(PLUGIN__DISABLE);
 	}
 
 	public static void callEvent(Event event) {
@@ -57,7 +57,7 @@ public class ExpSign extends JavaPlugin {
 
 	private void economyCheck() {
 		if (!Eco.hasEconomy()) {
-			Logger.log(PLUGIN__NO_ECONOMY.get());
+			Logger.log(PLUGIN__NO_ECONOMY);
 		}
 	}
 }

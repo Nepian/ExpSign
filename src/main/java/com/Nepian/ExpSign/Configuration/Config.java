@@ -70,7 +70,7 @@ public enum Config {
 			}
 		}
 
-		Logger.debug(Logger.CONFIG__LOAD.get());
+		Logger.debug(Logger.CONFIG__LOAD);
 	}
 
 	private static void write(File file) {
@@ -82,7 +82,7 @@ public enum Config {
 
 		try {
 			conf.save(file);
-			Logger.debug(Logger.CONFIG__WRITE.get());
+			Logger.debug(Logger.CONFIG__WRITE);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

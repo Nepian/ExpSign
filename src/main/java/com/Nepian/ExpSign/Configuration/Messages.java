@@ -92,7 +92,7 @@ public enum Messages {
 			}
 		}
 
-		Logger.debug(Logger.LANG__LOAD.get());
+		Logger.debug(Logger.LANG__LOAD);
 	}
 
 	private static void write(File file) {
@@ -104,7 +104,7 @@ public enum Messages {
 
 		try {
 			conf.save(file);
-			Logger.debug(Logger.LANG__WRITE.get());
+			Logger.debug(Logger.LANG__WRITE);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

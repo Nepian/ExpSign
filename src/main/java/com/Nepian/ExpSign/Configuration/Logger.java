@@ -5,55 +5,69 @@ import org.bukkit.ChatColor;
 
 import com.Nepian.ExpSign.ExpSign;
 
-public enum Logger {
-	PREFIX("&3[&a{plugin}&3]&a "),
+public class Logger {
+	private static final ExpSign plugin = ExpSign.getPlugin();
+	private static final String NAME    = plugin.getName();
+	private static final String VERSION = plugin.getDescription().getVersion();
 
-	PLUGIN__ENABLE("{plugin} v{version} Enabled!"),
-	PLUGIN__DISABLE("{plugin} Disabled!"),
-	PLUGIN__NO_ECONOMY("Not found Economy plugin"),
+	public static final String DEBUG;
+	public static final String PREFIX;
+	public static final String EXPSHOP;
+	public static final String READ;
+	public static final String WRITE;
 
-	EXPSIGNSHOP__CREATED("[&aExpShop&r] {creater}:{type}:{amount}-{prices}:{location}"),
+	public static final String PLUGIN__ENABLE;
+	public static final String PLUGIN__DISABLE;
+	public static final String PLUGIN__NO_ECONOMY;
 
-	PLAYERDATA__READ("[&2Read&r] UUID.yml -> PlayerData"),
-	PLAYERDATA__WRITE("[&3WRITE&r] PlayerData -> UUID.yml"),
-	PLAYERDATA__READ_ALL("[&2Read&r] All UUID.yml -> All PlayerData"),
-	PLAYERDATA__WRITE_ALL("[&3WRITE&r] All PlayerData -> All UUID.yml"),
+	public static final String PLAYERDATA__READ;
+	public static final String PLAYERDATA__WRITE;
+	public static final String PLAYERDATA__READ_ALL;
+	public static final String PLAYERDATA__WRITE_ALL;
 
-	CONFIG__LOAD("[&2Read&r] config.yml -> Config"),
-	CONFIG__WRITE("[&3WRITE&r] Config -> config.yml"),
+	public static final String CONFIG__LOAD;
+	public static final String CONFIG__WRITE;
 
-	LANG__LOAD("[&2Read&r] lang-xx.yml -> Messages"),
-	LANG__WRITE("[&3WRITE&r] Messages -> lang-xx.yml");
+	public static final String LANG__LOAD;
+	public static final String LANG__WRITE;
 
-	private static final ExpSign plugin;
-	private String message;
+	public static String EXPSIGNSHOP__CREATED;
 
 	static {
-		plugin = ExpSign.getPlugin();
-	}
+		DEBUG   = "&7[&eDEBUG&7]&r ";
+		PREFIX  = "&3[&a" + NAME + "&3]&a ";
+		EXPSHOP = "[&aExpShop&r] ";
+		READ    = "[&2Read&r] ";
+		WRITE   = "[&3WRITE&r] ";
 
-	Logger(String message) {
-		this.message = message;
-	}
+		PLUGIN__ENABLE     = NAME + " v" + VERSION + " Enabled!";
+		PLUGIN__DISABLE    = NAME + " Disabled!";
+		PLUGIN__NO_ECONOMY = "Not found Economy plugin";
 
-	public String get() {
-		this.message =
-			this.message
-			.replace("{plugin}", plugin.getName())
-			.replace("{version}", plugin.getDescription().getVersion());
-		return this.message;
+		PLAYERDATA__READ      = READ + "UUID.yml -> PlayerData";
+		PLAYERDATA__WRITE     = WRITE + "PlayerData -> UUID.yml";
+		PLAYERDATA__READ_ALL  = READ + "All UUID.yml -> All PlayerData";
+		PLAYERDATA__WRITE_ALL = WRITE + "All PlayerData -> All UUID.yml";
+
+		CONFIG__LOAD  = READ + "config.yml -> Config";
+		CONFIG__WRITE = WRITE + "Config -> config.yml";
+
+		LANG__LOAD  = READ + "lang-xx.yml -> Messages";
+		LANG__WRITE = WRITE + "Messages -> lang-xx.yml";
+
+		EXPSIGNSHOP__CREATED = EXPSHOP + "{creater}:{type}";
 	}
 
 	public static void log(String msg) {
 		if (Config.LOG.getBoolean()) {
-			msg = ChatColor.translateAlternateColorCodes('&', PREFIX.get() + msg);
+			msg = ChatColor.translateAlternateColorCodes('&', PREFIX + msg);
 			Bukkit.getServer().getConsoleSender().sendMessage(msg);
 		}
 	}
 
 	public static void debug(String msg) {
 		if (Config.DEBUG.getBoolean()) {
-			Logger.log("&7[&eDEBUG&7]&r " + msg);
+			Logger.log(DEBUG + msg);
 		}
 	}
 }

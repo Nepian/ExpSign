@@ -74,14 +74,14 @@ public class PlayerDataManager implements Listener {
 			datas.put(uuid, data);
 		}
 		playerDatas = datas;
-		Logger.debug(Logger.PLAYERDATA__READ_ALL.get());
+		Logger.debug(Logger.PLAYERDATA__READ_ALL);
 	}
 
 	private static void writePlayerData() {
 		for (PlayerData data : playerDatas.values()) {
 			data.write();
 		}
-		Logger.debug(Logger.PLAYERDATA__WRITE_ALL.get());
+		Logger.debug(Logger.PLAYERDATA__WRITE_ALL);
 	}
 
 	private static boolean registerPlayerData(UUID uuid) {
