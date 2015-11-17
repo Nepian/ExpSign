@@ -19,6 +19,7 @@ import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeMoneyChecker;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeNameChecker;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradePermissionChecker;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.Trade.TradeQuantityChecker;
+import com.Nepian.ExpSign.Listeners.PlayerDataLoad.ExpBankLoading;
 import com.Nepian.ExpSign.Listeners.PlayerDataLoad.NameLoading;
 import com.Nepian.ExpSign.Listeners.PlayerDataLoad.PlayerDataLoadWriting;
 import com.Nepian.ExpSign.Listeners.PlayerDataSave.PlayerDataSaveWriting;
@@ -73,6 +74,7 @@ public class EventRegister {
 
 	private static void registerPlayerDataLoadEvent() {
 		registerEvent(new NameLoading());
+		registerEvent(new ExpBankLoading());
 		registerEvent(new PlayerDataLoadWriting());
 	}
 

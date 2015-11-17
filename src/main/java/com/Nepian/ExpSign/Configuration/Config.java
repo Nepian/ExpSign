@@ -11,10 +11,8 @@ public enum Config {
 	EXPBANK_INITIAL_MONEY(1000),
 
 	PLAYERDATA__LOAD__NAME(true),
-	PLAYERDATA__LOAD__XP(true),
-	PLAYERDATA__LOAD__LOCATION(true),
-	PLAYERDATA__SAVE__XP(true),
-	PLAYERDATA__SAVE__LOCATION(true),
+	PLAYERDATA__LOAD__EXPBANK(true),
+	PLAYERDATA__SAVE__EXPBANK(true),
 
 	LANG("lang-jp.yml"),
 	LOG(true),
@@ -36,6 +34,10 @@ public enum Config {
 
 	public String getString() {
 		return (String) this.get();
+	}
+
+	public int getInt() {
+		return (int) this.get();
 	}
 
 	public static void load(File file) {
