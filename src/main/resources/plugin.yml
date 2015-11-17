@@ -4,9 +4,32 @@ version: 0.1
 author: Nepian
 depend:
 - Vault
+
 permissions:
-  ExpSign.admin:
-  ExpSign.shop.create.buy:
-  ExpSign.shop.create.sell:
-  ExpSign.shop.buy:
-  ExpSign.shop.sell:
+  ExpSign.*:
+    description: Give all permissions for ExpSignShop.
+    children:
+      ExpSign.admin: true
+      ExpSign.public: true
+
+  ExpSign.public:
+    description: Give public permissions for ExpSign.
+    children:
+      ExpSign.shop.public: true
+      ExpSign.bank.public: true
+
+  ExpSign.shop.public:
+    description: Give public permissions for ExpSignShop.
+    children:
+      ExpSign.shop.create.buy: true
+      ExpSign.shop.create.sell: true
+      ExpSign.shop.buy: true
+      ExpSign.shop.sell: true
+
+  ExpSign.bank.public:
+    description: Give public permissions for ExpSignBank.
+    children:
+      ExpSign.bank.create.withdraw: true
+      ExpSign.bank.create.deposit: true
+      ExpSign.bank.withdraw: true
+      ExpSign.bank.deposit: true

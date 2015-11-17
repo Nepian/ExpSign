@@ -5,8 +5,14 @@ import org.bukkit.command.CommandSender;
 public enum Permission {
 	SHOP_BUY("ExpSign.shop.buy"),
 	SHOP_SELL("ExpSign.shop.sell"),
-	SIGN_CREATION_BUY("ExpSign.sign.create.buy"),
-	SIGN_CREATION_SELL("ExpSign.sign.create.sell"),
+	SHOP_CREATE_BUY("ExpSign.shop.create.buy"),
+	SHOP_CREATE_SELL("ExpSign.shop.create.sell"),
+
+	BANK_CREATE_WITHDRAW("ExpSign.bank.create.withdraw"),
+	BANK_CREATE_DEPOSIT("ExpSign.bank.create.deposit"),
+	BANK_WITHDRAW("ExpSign.bank.withdraw"),
+	BANK_DEPOSIT("ExpSign.bank.deposit"),
+	BANK_CHECK("ExpSign.bank.check"),
 
 	ADMIN("ExpSign.admin");
 
