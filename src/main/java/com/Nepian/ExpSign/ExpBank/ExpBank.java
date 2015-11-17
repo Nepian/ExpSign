@@ -29,7 +29,7 @@ public class ExpBank {
 
 	/**
 	 * ExpBankの経験値を確認する
-	 * @param userdata 確認するユーザのユーザデータ
+	 * @param player 対象のプレイヤー
 	 */
 	public static int check(OfflinePlayer player) {
 		return check(getPlayerData(player));
