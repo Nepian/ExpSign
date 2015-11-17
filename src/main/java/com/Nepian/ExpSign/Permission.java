@@ -5,8 +5,8 @@ import org.bukkit.command.CommandSender;
 public enum Permission {
 	SHOP_BUY("ExpSign.shop.buy"),
 	SHOP_SELL("ExpSign.shop.sell"),
-	SIGN_CREATION_BUY("NepianEXP.sign.create.buy"),
-	SIGN_CREATION_SELL("NepianEXP.sign.create.sell"),
+	SIGN_CREATION_BUY("ExpSign.sign.create.buy"),
+	SIGN_CREATION_SELL("ExpSign.sign.create.sell"),
 
 	ADMIN("NepianEXP.admin"),
 
@@ -28,10 +28,6 @@ public enum Permission {
 
 	public static boolean has(CommandSender sender, String node) {
 		return sender.hasPermission(node) || sender.hasPermission(node.toLowerCase());
-	}
-
-	public static boolean hasPermissionSet(CommandSender sender, String permission) {
-		return sender.isPermissionSet(permission) && sender.hasPermission(permission);
 	}
 
 	public String toString() {
