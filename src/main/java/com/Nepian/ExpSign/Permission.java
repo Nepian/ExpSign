@@ -8,9 +8,7 @@ public enum Permission {
 	SIGN_CREATION_BUY("ExpSign.sign.create.buy"),
 	SIGN_CREATION_SELL("ExpSign.sign.create.sell"),
 
-	ADMIN("NepianEXP.admin"),
-
-	NOFEE("NepianEXP.nofee");
+	ADMIN("ExpSign.admin");
 
 	private final String permission;
 
