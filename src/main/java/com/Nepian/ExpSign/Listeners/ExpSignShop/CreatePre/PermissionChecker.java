@@ -24,14 +24,14 @@ public class PermissionChecker implements Listener {
 		String priceLine = event.getSignLine(ExpSignShop.PRICE_LINE);
 
 		if (PriceUtil.hasBuyPrice(priceLine)) {
-			if (!Permission.has(player, SIGN_CREATION_BUY)) {
+			if (!Permission.has(player, SHOP_CREATE_BUY)) {
 				event.setOutcome(NO_PERMISSION);
 				return;
 			}
 		}
 
 		if (PriceUtil.hasSellPrice(priceLine)) {
-			if (!Permission.has(player, SIGN_CREATION_SELL)) {
+			if (!Permission.has(player, SHOP_CREATE_SELL)) {
 				event.setOutcome(NO_PERMISSION);
 				return;
 			}
