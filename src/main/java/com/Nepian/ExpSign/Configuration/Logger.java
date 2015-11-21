@@ -13,6 +13,7 @@ public class Logger {
 	public static final String DEBUG;
 	public static final String PREFIX;
 	public static final String EXPSHOP;
+	public static final String EVENT;
 	public static final String READ;
 	public static final String WRITE;
 
@@ -37,6 +38,7 @@ public class Logger {
 		DEBUG   = "&7[&eDEBUG&7]&r ";
 		PREFIX  = "&3[&a" + NAME + "&3]&a ";
 		EXPSHOP = "[&aExpShop&r] ";
+		EVENT   = "[&dEvent&r] ";
 		READ    = "[&2Read&r] ";
 		WRITE   = "[&3WRITE&r] ";
 
