@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,6 +17,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 
+import com.Nepian.ExpSign.EventManager;
 import com.Nepian.ExpSign.ExpSign;
 import com.Nepian.ExpSign.Configuration.Files;
 import com.Nepian.ExpSign.Configuration.Logger;
@@ -124,6 +126,10 @@ public class PlayerDataManager implements Listener {
 		return playerDatas.get(uuid);
 	}
 
+	private static void callEvent(Event event) {
+		EventManager.callEvent(event);
+	}
+
 	/* Listeners ------------------------------------------------------------*/
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -135,7 +141,7 @@ public class PlayerDataManager implements Listener {
 				PlayerData data = get(player, true);
 				PlayerDataLoadEvent loadEvent = new PlayerDataLoadEvent(player, data);
 
-				ExpSign.callEvent(loadEvent);
+				callEvent(loadEvent);
 			}
 		});
 	}
@@ -149,7 +155,7 @@ public class PlayerDataManager implements Listener {
 				PlayerData data = get(player, true);
 				PlayerDataSaveEvent saveEvent = new PlayerDataSaveEvent(player, data);
 
-				ExpSign.callEvent(saveEvent);
+				callEvent(saveEvent);
 			}
 		});
 	}
@@ -163,7 +169,7 @@ public class PlayerDataManager implements Listener {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			PlayerData data = get(player, true);
 			PlayerDataSaveEvent saveEvent = new PlayerDataSaveEvent(player, data);
-			ExpSign.callEvent(saveEvent);
+			callEvent(saveEvent);
 		}
 	}
 }

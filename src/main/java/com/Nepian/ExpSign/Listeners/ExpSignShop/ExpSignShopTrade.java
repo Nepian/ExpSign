@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import com.Nepian.Breeze.Utils.ActionUtil;
 import com.Nepian.Breeze.Utils.BlockUtil;
-import com.Nepian.ExpSign.ExpSign;
+import com.Nepian.ExpSign.EventManager;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent;
 import com.Nepian.ExpSign.Events.ExpSignShopTradeEvent.TradeType;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
@@ -43,6 +43,6 @@ public class ExpSignShopTrade implements Listener {
 
 		ExpSignShopTradeEvent TradeEve = new ExpSignShopTradeEvent(player, sign, tradeType);
 
-		ExpSign.callEvent(TradeEve);
+		EventManager.callEvent(TradeEve);
 	}
 }

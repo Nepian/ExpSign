@@ -3,8 +3,6 @@ package com.Nepian.ExpSign;
 import static com.Nepian.ExpSign.Configuration.Files.*;
 import static com.Nepian.ExpSign.Configuration.Logger.*;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Nepian.ExpSign.Configuration.Config;
@@ -27,7 +25,7 @@ public class ExpSign extends JavaPlugin {
 		Config.load(FILE_CONFIG);
 		Messages.load(FILE_LANG);
 		PlayerDataManager.load();
-		EventRegister.load();
+		EventManager.load();
 
 		Logger.log(PLUGIN__ENABLE);
 	}
@@ -40,11 +38,6 @@ public class ExpSign extends JavaPlugin {
 		getServer().getScheduler().cancelTasks(this);
 
 		Logger.log(PLUGIN__DISABLE);
-	}
-
-	public static void callEvent(Event event) {
-		Logger.debug("[&dEvent&r] " + event.getEventName());
-		Bukkit.getPluginManager().callEvent(event);
 	}
 
 	/* Getter ---------------------------------------------------------------*/

@@ -7,7 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 import com.Nepian.Breeze.Utils.BlockUtil;
 import com.Nepian.Breeze.Utils.StringUtil;
-import com.Nepian.ExpSign.ExpSign;
+import com.Nepian.ExpSign.EventManager;
 import com.Nepian.ExpSign.Events.ExpSignShopCreatePostEvent;
 import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
@@ -29,7 +29,7 @@ public class ExpSignShopCreate implements Listener {
 		Sign sign = (Sign) event.getBlock().getState();
 		ExpSignShopCreatePreEvent preEvent = new ExpSignShopCreatePreEvent(event.getPlayer(), sign, lines);
 
-		ExpSign.callEvent(preEvent);
+		EventManager.callEvent(preEvent);
 
 		if (preEvent.isCancelled()) return;
 
@@ -39,6 +39,6 @@ public class ExpSignShopCreate implements Listener {
 
 		ExpSignShopCreatePostEvent postEvent = new ExpSignShopCreatePostEvent(preEvent.getPlayer(), preEvent.getSign(), preEvent.getSignLines());
 
-		ExpSign.callEvent(postEvent);
+		EventManager.callEvent(postEvent);
 	}
 }
