@@ -21,7 +21,7 @@ public class TradeMessageSender implements Listener {
 			return;
 		}
 
-		Messages.sendPrefixMessage(event.getPlayer(), Messages.EXPSIGNSHOP__SUCCESS_BUY.get());
+		Messages.sendPrefixMessage(event.getPlayer(), Messages.EXPSIGNSHOP__SUCCESS_BUY);
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -35,6 +35,6 @@ public class TradeMessageSender implements Listener {
 			return;
 		}
 
-		Messages.sendPrefixMessage(event.getPlayer(), Messages.EXPSIGNSHOP__SUCCESS_SELL.get());
+		Messages.sendPrefixMessage(event.getPlayer(), Messages.EXPSIGNSHOP__SUCCESS_SELL);
 	}
 }

@@ -1,5 +1,7 @@
 package com.Nepian.ExpSign.Listeners.ExpSignShop.Trade;
 
+import static com.Nepian.ExpSign.Configuration.Messages.*;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,36 +18,18 @@ public class TradeErrorMessageSender implements Listener {
 			return;
 		}
 
-		String message = null;
+		Messages message = null;
 
 		switch (event.getOutCome()) {
-		case NO_OWNER_EXP:
-			message = Messages.EXPSIGNSHOP__NO_OWNER_EXP.get();
-			break;
-		case NO_OWNER_MONEY:
-			message = Messages.EXPSIGNSHOP__NO_OWNER_MONEY.get();
-			break;
-		case NO_PLAYER_EXP:
-			message = Messages.PLAYER__NO_EXP.get();
-			break;
-		case NO_PLAYER_MONEY:
-			message = Messages.PLAYER__NO_MONEY.get();
-			break;
-		case NO_PERMISSION:
-			message = Messages.PLAYER__NO_PERMISSION.get();
-			break;
-		case MAX_EXP:
-			message = Messages.PLAYER__MAX_EXP.get();
-			break;
-		case OWNER_IS_PLAYER:
-			message = Messages.EXPSIGNSHOP__OWNER_MINE.get();
-			break;
-		case CANT_BUY:
-			message = Messages.EXPSIGNSHOP__CANNOT_BUY.get();
-			break;
-		case CANT_SELL:
-			message = Messages.EXPSIGNSHOP__CANNOT_SELL.get();
-			break;
+		case NO_OWNER_EXP:    message = EXPSIGNSHOP__NO_OWNER_EXP;   break;
+		case NO_OWNER_MONEY:  message = EXPSIGNSHOP__NO_OWNER_MONEY; break;
+		case NO_PLAYER_EXP:   message = PLAYER__NO_EXP;              break;
+		case NO_PLAYER_MONEY: message = PLAYER__NO_MONEY;            break;
+		case NO_PERMISSION:   message = PLAYER__NO_PERMISSION;       break;
+		case MAX_EXP:         message = PLAYER__MAX_EXP;             break;
+		case OWNER_IS_PLAYER: message = EXPSIGNSHOP__OWNER_MINE;     break;
+		case CANT_BUY:        message = EXPSIGNSHOP__CANNOT_BUY;     break;
+		case CANT_SELL:       message = EXPSIGNSHOP__CANNOT_SELL;    break;
 		default:
 		}
 
