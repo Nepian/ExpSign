@@ -1,8 +1,8 @@
 package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre;
 
-import static org.bukkit.event.EventPriority.*;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.Nepian.ExpSign.Configuration.Messages;
@@ -10,11 +10,14 @@ import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 
 public class ErrorMessageSender implements Listener {
 
-		if (!event.isCancelled()) return;
 	@EventHandler(priority = EventPriority.MONITOR)
 	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
 
 		String message = null;
+		if (!event.isCancelled()) {
+			return;
+		}
+
 
 		switch(event.getOutCome()) {
 		case INVALID_PRICE:

@@ -16,6 +16,10 @@ public class QuantityChecker implements Listener {
 		String quantity = event.getSignLine(QUANTITY_LINE);
 	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
 
+		if (event.isCancelled()) {
+			return;
+		}
+
 		if (!NumberUtil.isInteger(quantity)) {
 			event.setOutcome(INVALID_QUANTITY);
 		}

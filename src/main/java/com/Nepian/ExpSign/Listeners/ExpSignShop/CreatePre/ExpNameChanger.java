@@ -12,5 +12,10 @@ public class ExpNameChanger implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 		event.setSignLine(ExpSignShop.EXP_LINE, "[" + ExpSignShop.EXPSIGNSHOP_NAME + "]");
 	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
+
+		if (event.isCancelled()) {
+			return;
+		}
+
 	}
 }

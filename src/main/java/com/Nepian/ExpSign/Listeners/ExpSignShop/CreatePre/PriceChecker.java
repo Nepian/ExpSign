@@ -1,7 +1,7 @@
 package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre;
 
 import static com.Nepian.Breeze.Utils.PriceUtil.*;
-import static com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent.CreationOutcome.*;
+import static com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent.Outcome.*;
 import static com.Nepian.ExpSign.Signs.ExpSignShop.*;
 
 import org.bukkit.event.EventHandler;
@@ -15,6 +15,11 @@ public class PriceChecker implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
+
+		if (event.isCancelled()) {
+			return;
+		}
+
 		String line = event.getSignLine(PRICE_LINE).toUpperCase().replaceAll(" ", "");
 
 		if (!isOnlyOneColon(line)) {
@@ -47,6 +52,8 @@ public class PriceChecker implements Listener {
 			event.setOutcome(INVALID_PRICE);
 		}
 	}
+
+	/* Private Methods ------------------------------------------------------*/
 
 	private static boolean isOnlyOneColon(String line) {
 		return (line.indexOf(':') == line.lastIndexOf(':'));

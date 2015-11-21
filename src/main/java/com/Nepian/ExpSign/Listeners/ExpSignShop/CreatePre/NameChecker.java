@@ -14,8 +14,14 @@ import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class NameChecker implements Listener {
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public static void onPreExpSignShopCreation(ExpSignShopCreatePreEvent event) {
+
+		if (event.isCancelled()) {
+			return;
+		}
+
 		String name = event.getSignLine(NAME_LINE);
 		Player player = event.getPlayer();
 
