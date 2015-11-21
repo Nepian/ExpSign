@@ -6,13 +6,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import com.Nepian.ExpSign.Configuration.Messages;
-import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
+import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 
 public class ErrorMessageSender implements Listener {
 
-	@EventHandler(priority = MONITOR)
-	public static void onPreExpSignShopCreation(PreExpSignShopCreationEvent event) {
 		if (!event.isCancelled()) return;
+	@EventHandler(priority = EventPriority.MONITOR)
+	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
 
 		String message = null;
 

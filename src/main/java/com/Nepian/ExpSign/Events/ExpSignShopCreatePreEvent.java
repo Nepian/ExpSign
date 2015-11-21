@@ -1,23 +1,23 @@
 package com.Nepian.ExpSign.Events;
 
-import static com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent.CreationOutcome.*;
+import static com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent.Outcome.*;
 
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PreExpSignShopCreationEvent extends Event {
+public class ExpSignShopCreatePreEvent extends Event {
 	private static final HandlerList handlers = new HandlerList();
 
-	private CreationOutcome outcome = SIGN_CREATED_SUCCESSFULLY;
+	private Outcome outcome = SIGN_CREATED_SUCCESSFULLY;
 	private Player creator;
     private Sign sign;
     private String[] signLines;
 
     /* Constructor ----------------------------------------------------------*/
 
-	public PreExpSignShopCreationEvent(Player creator, Sign sign, String[] signLines) {
+	public ExpSignShopCreatePreEvent(Player creator, Sign sign, String[] signLines) {
 		this.creator = creator;
         this.sign = sign;
         this.signLines = signLines.clone();
@@ -31,7 +31,7 @@ public class PreExpSignShopCreationEvent extends Event {
 
 	/* Setter ---------------------------------------------------------------*/
 
-	public void setOutcome(CreationOutcome outcome) {
+	public void setOutcome(Outcome outcome) {
 		this.outcome = outcome;
 	}
 
@@ -49,7 +49,7 @@ public class PreExpSignShopCreationEvent extends Event {
 
 	/* Getter ---------------------------------------------------------------*/
 
-	public CreationOutcome getOutCome() {
+	public Outcome getOutCome() {
 		return outcome;
 	}
 
@@ -79,7 +79,7 @@ public class PreExpSignShopCreationEvent extends Event {
 
 	/* Enum -----------------------------------------------------------------*/
 
-	public static enum CreationOutcome {
+	public static enum Outcome {
 		INVALID_PRICE,
 		INVALID_QUANTITY,
 		NO_PERMISSION,

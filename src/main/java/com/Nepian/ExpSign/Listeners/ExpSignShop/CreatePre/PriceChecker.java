@@ -9,12 +9,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.Nepian.Breeze.Utils.PriceUtil;
-import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
+import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 
 public class PriceChecker implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
-	public static void onPreExpSignShopCreation(PreExpSignShopCreationEvent event) {
+	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
 		String line = event.getSignLine(PRICE_LINE).toUpperCase().replaceAll(" ", "");
 
 		if (!isOnlyOneColon(line)) {

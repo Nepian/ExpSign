@@ -9,13 +9,13 @@ import org.bukkit.event.Listener;
 
 import com.Nepian.ExpSign.ExpSign;
 import com.Nepian.ExpSign.Configuration.Logger;
-import com.Nepian.ExpSign.Events.PostExpSignShopCreatedEvent;
+import com.Nepian.ExpSign.Events.ExpSignShopCreatePostEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class ShopCreatedLogger implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
-	public static void onPostExpSignShopCreated (final PostExpSignShopCreatedEvent event) {
+	public static void onCreatePost(final ExpSignShopCreatePostEvent event) {
 		Bukkit.getScheduler().runTaskAsynchronously(ExpSign.getPlugin(), new Runnable() {
 
 			@Override

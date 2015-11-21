@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PostExpSignShopCreatedEvent extends Event {
+public class ExpSignShopCreatePostEvent extends Event {
 	private static final HandlerList handlers = new HandlerList();
 
 	private final Player creator;
@@ -14,7 +14,7 @@ public class PostExpSignShopCreatedEvent extends Event {
 
 	/* Constructor ----------------------------------------------------------*/
 
-	public PostExpSignShopCreatedEvent(Player creator, Sign sign, String[] signLines) {
+	public ExpSignShopCreatePostEvent(Player creator, Sign sign, String[] signLines) {
 		this.creator = creator;
 		this.sign = sign;
 		this.signLines = signLines.clone();

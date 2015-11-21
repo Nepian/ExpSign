@@ -10,12 +10,12 @@ import org.bukkit.event.Listener;
 
 import com.Nepian.ExpSign.Permission;
 import com.Nepian.ExpSign.Configuration.Config;
-import com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent;
+import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
 import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class NameChecker implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
-	public static void onPreExpSignShopCreation(PreExpSignShopCreationEvent event) {
+	public static void onPreExpSignShopCreation(ExpSignShopCreatePreEvent event) {
 		String name = event.getSignLine(NAME_LINE);
 		Player player = event.getPlayer();
 
