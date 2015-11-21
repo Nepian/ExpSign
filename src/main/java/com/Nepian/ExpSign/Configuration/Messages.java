@@ -58,6 +58,10 @@ public enum Messages {
 		sendMessage(sender, prefix(message));
 	}
 
+	public static void sendPrefixMessage(CommandSender sender, Messages message) {
+		sendMessage(sender, message.message);
+	}
+
 	public static void load(File file) {
 		read(file);
 		save(file);
