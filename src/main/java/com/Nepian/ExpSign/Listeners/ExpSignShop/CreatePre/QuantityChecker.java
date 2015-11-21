@@ -1,27 +1,27 @@
 package com.Nepian.ExpSign.Listeners.ExpSignShop.CreatePre;
 
-import static com.Nepian.ExpSign.Events.PreExpSignShopCreationEvent.CreationOutcome.*;
-import static com.Nepian.ExpSign.Signs.ExpSignShop.*;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.Nepian.Breeze.Utils.NumberUtil;
 import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent;
+import com.Nepian.ExpSign.Events.ExpSignShopCreatePreEvent.Outcome;
+import com.Nepian.ExpSign.Signs.ExpSignShop;
 
 public class QuantityChecker implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
-		String quantity = event.getSignLine(QUANTITY_LINE);
 	public static void onCreatePre(ExpSignShopCreatePreEvent event) {
 
 		if (event.isCancelled()) {
 			return;
 		}
 
+		String quantity = event.getSignLine(ExpSignShop.QUANTITY_LINE);
+
 		if (!NumberUtil.isInteger(quantity)) {
-			event.setOutcome(INVALID_QUANTITY);
+			event.setOutcome(Outcome.INVALID_QUANTITY);
 		}
 	}
 }
