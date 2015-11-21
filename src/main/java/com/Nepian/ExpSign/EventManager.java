@@ -1,7 +1,12 @@
 package com.Nepian.ExpSign;
 
+import static com.Nepian.ExpSign.Configuration.Logger.*;
+
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 
+import com.Nepian.ExpSign.Configuration.Logger;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopCreate;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopProtect;
 import com.Nepian.ExpSign.Listeners.ExpSignShop.ExpSignShopTrade;
@@ -25,7 +30,7 @@ import com.Nepian.ExpSign.Listeners.PlayerDataLoad.PlayerDataLoadWriting;
 import com.Nepian.ExpSign.Listeners.PlayerDataSave.PlayerDataSaveWriting;
 import com.Nepian.ExpSign.PlayerData.PlayerDataManager;
 
-public class EventRegister {
+public class EventManager {
 	private static final ExpSign plugin;
 
 	static {
@@ -45,6 +50,11 @@ public class EventRegister {
 		registerPlayerDataSaveEvent();
 
 		registerEvent(new ExpSignShopProtect());
+	}
+
+	public static void callEvent(Event event) {
+		Logger.debug(EVENT + event.getEventName());
+		Bukkit.getPluginManager().callEvent(event);
 	}
 
 	/* Private Methods ------------------------------------------------------*/
